@@ -1,10 +1,11 @@
+import "dotenv/config";
 import express from "express";
 const app = express();
 import morgan from "morgan";
 import cors from "cors";
 
 const PORT = process.env.PORT || 8000;
-
+console.log(process.env.MONGODB_URL);
 //connect mongodb
 
 import { connectMongo } from "./src/config/mongoDbConfig.js";

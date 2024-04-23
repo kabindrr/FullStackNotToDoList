@@ -1,5 +1,5 @@
 import express from "express";
-import { idGenerator } from "../utils.js";
+
 import {
   delteTask,
   getTasks,
@@ -8,8 +8,6 @@ import {
 } from "../models/task/TaskModel.js";
 const router = express.Router();
 
-let fakeDb = [];
-
 //controllers
 
 //get data
@@ -17,7 +15,6 @@ router.get("/", async (req, res) => {
   try {
     //db query to get the data
     const tasks = await getTasks();
-    console.log(tasks);
     res.json({
       status: "success",
       message: "Here are the tasks",
@@ -53,8 +50,6 @@ router.post("/", async (req, res) => {
       message: error.message,
     });
   }
-  // const id = idGenerator()
-  // fakeDb.push({ ...req.body, id });
 });
 
 //update task
@@ -82,13 +77,11 @@ router.patch("/", async (req, res) => {
   }
 });
 //delete task
-router.delete("/:_id", async (req, res) => {
+router.delete("/", async (req, res) => {
   try {
-    const { _id } = req.params;
+    const result = await delteTask(req.body);
 
-    const result = await delteTask(_id);
-
-    result?._id
+    result?.deletedCount
       ? res.json({
           status: "success",
           message: "Your task has been Deleted",

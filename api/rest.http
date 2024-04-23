@@ -25,7 +25,7 @@ Content-Type: application/json
 }
  
 ### delete data
-DELETE http://localhost:8000/api/v1/tasks/6625ae19f36ec33479c7ff6d
+DELETE http://localhost:8000/api/v1/tasks
 # header of the request 
 Content-Type: application/json
 
